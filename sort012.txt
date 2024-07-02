@@ -1,0 +1,47 @@
+//to sort the array 0,1,2 without sorting(gfg question)
+class Solution
+{
+    public:
+    void sort012(int a[], int n)
+    {
+       vector<int> v1;
+       vector<int> v2;
+       vector<int> v3;
+       int s0=0,s1=0,s2=0;
+       for(int i=0;i<n;i++){
+           if(a[i]==0){
+               v1.push_back(a[i]);
+               s0++;
+           }
+            if(a[i]==1){
+               v2.push_back(a[i]);
+               s1++;
+           }
+            if(a[i]==2){
+               v3.push_back(a[i]);
+               s2++;
+           }
+       }
+       int i=0;
+       while(s0>0){
+           a[i]=0;
+           i++;
+           s0--;
+       }
+       while(s1>0){
+           a[i]=1;
+           i++;
+           s1--;
+       }
+       while(s2>0){
+           a[i]=2;
+           i++;
+           s2--;
+       }
+    }
+    
+};
+
+output:->
+intput- 0,2,1,0,1,1
+output- 0,0,1,1,1,2
