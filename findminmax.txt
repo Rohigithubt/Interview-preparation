@@ -1,0 +1,69 @@
+//program to find minimum and maximum element
+#include<bits/stdc++.h>
+using namespace std;
+int findmin(int a[],int n){
+    int min=a[0];
+    for(int i=0;i<n;i++){
+        if(min>a[i]){
+            min=a[i];
+        }
+    }
+    return min;
+}
+int findmax(int a[],int n){
+    int max=a[0];
+    for(int i=0;i<n;i++){
+        if(max<a[i]){
+            max=a[i];
+        }
+    }
+    return max;
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    int a[n];
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    cout<<"minimum element="<<findmin(a,n)<<"\n";
+    cout<<"maxmum element="<<findmax(a,n);
+}
+
+output:->
+
+Enter the size of the array:
+5
+Enter the elements in the array:
+2 3 5 1 4
+minimum element=1
+maxmum element=5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
