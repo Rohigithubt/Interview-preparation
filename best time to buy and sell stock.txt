@@ -1,0 +1,38 @@
+//program to find best time to buy and sell stock
+#include<bits/stdc++.h>
+using namespace std;
+int findmaxprofit(vector<int> &prices){
+    int maxprofit=0;
+    int minsofar=prices[0];
+    for(int i=0;i<prices.size();i++){
+        minsofar=min(minsofar,prices[i]);
+        int profit=prices[i]-minsofar;
+        maxprofit=max(maxprofit,profit);
+    }
+    return maxprofit;
+}
+int main()
+{
+    int n;
+    cout<<"Enter the number:\n";
+    cin>>n;
+    vector<int> prices;
+    cout<<"Enter the elements in the vector:\n";
+    for(int i=0;i<n;i++){
+        int value;
+        cin>>value;
+        prices.push_back(value);
+    }
+    cout<<"max profit="<<findmaxprofit(prices);
+}
+
+/* 
+output:->
+Enter the number:
+5 
+Enter the elements in the vector:
+7 6 4 3 1
+max profit=0
+
+Time complexity=O(n)
+*/
