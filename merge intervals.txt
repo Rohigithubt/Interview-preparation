@@ -1,0 +1,68 @@
+//program to merge intervales
+#include<bits/stdc++.h>
+using namespace std;
+vector<vector<int>> merge(vector<vector<int>>& intervales){
+    int n=intervales.size();
+    sort(intervales.begin(),intervales.end());
+    vector<vector<int>> ans;
+    for(int i=0;i<n;i++){
+        if(ans.empty()){
+            ans.push_back(intervales[i]);
+        }
+        else{
+            vector<int>& v=ans.back();
+            int y=v[1];
+            if(intervales[i][0]<=y){
+                v[1]=max(y,intervales[i][1]);
+            }
+            else{
+                ans.push_back(intervales[i]);
+            }
+        }
+    }
+    return ans;
+}
+int main()
+{
+    int n,k,m;
+    cout<<"Enter the rows and columns:\n";
+    cin>>n;
+    cin>>k;
+    vector<vector<int>>intervales(n, vector<int>(k));
+    cout<<"Enter the intervales:\n";
+    for(int i=0;i<n;i++){
+        for(int j=0;j<k;j++){
+            cin>>m;
+            intervales[i][j]=m;
+        }
+    }
+    vector<vector<int>> v=merge(intervales);
+    int x=v.size();
+    cout<<"After merge operation:\n";
+    
+    for(auto i:v){
+        cout<<"[";
+        for(int j=0;j<i.size();j++){
+            cout<<i[j];
+            if(j<i.size()-1) cout<<",";
+        }
+        cout<<"]"<<" ";
+    }
+}
+
+/*
+output:->
+
+Enter the rows and columns:
+4
+2
+Enter the intervales:
+1 3 
+2 6
+8 10
+7 15
+After merge operation:
+[1,6] [7,15] 
+
+Time _Complexity= O(N*logN)
+*/
