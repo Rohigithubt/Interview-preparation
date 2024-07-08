@@ -1,0 +1,48 @@
+//program to find longest consecutive subsequence
+#include<bits/stdc++.h>
+using namespace std;
+int findLongestConseqSubseq(int arr[], int N) {
+    if (N == 0)
+     return 0;
+
+    sort(arr, arr + N);
+    int count = 1;
+    int maxCount = 1;
+
+    for (int i = 1; i < N; i++) {
+        if (arr[i] == arr[i - 1] + 1) {
+            count++;
+        } else if (arr[i] != arr[i - 1]) {
+            maxCount = max(maxCount, count);
+            count = 1;
+        }
+    }
+    maxCount =max(maxCount, count); 
+
+    return maxCount;
+}
+
+int main()
+{
+    int n;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+   cout<<"longest consecutive subsequence="<<findLongestConseqSubseq(arr,n);
+}
+/*
+
+output:->
+
+Enter the size of the array:
+7
+Enter the elements in the array:
+2 6 1 9 4 5 3
+longest consecutive subsequence=6
+
+Time complexity=O(NlogN)
+*/
