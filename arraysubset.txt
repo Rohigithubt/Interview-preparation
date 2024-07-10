@@ -1,0 +1,64 @@
+//program to chechk whether an array2 is a subset of array1 or not
+#include<bits/stdc++.h>
+using namespace std;
+bool isSubset(long a1[],long a2[],int n,int m){
+    sort(a1,a1+n);
+    sort(a2,a2+m);
+    int i=0,j=0;
+     while (i < n && j < m) {
+            if (a1[i] < a2[j]) {
+               i++;
+            } 
+            else if (a1[i] == a2[j]) {
+              i++;
+                j++;
+            } 
+            else {
+               return false;
+            }
+        }
+        
+        if (j == m) {
+            return true;
+        } 
+        else {
+            return false;
+        }
+}
+int main()
+{
+    long n,m;
+    cout<<"Enter the size of the array1 and array2:\n";
+    cin>>n;
+    cin>>m;
+    long a1[n];
+    long a2[m];
+    cout<<"Enter the elements in the array1:\n";
+    for(int i=0;i<n;i++){
+        cin>>a1[i];
+    }
+    cout<<"Enter the elements in the array2:\n";
+    for(int i=0;i<m;i++){
+        cin>>a2[i];
+    }
+    if(!isSubset(a1,a2,n,m)){
+        cout<<"NO";
+    }
+    else{
+        cout<<"YES";
+    }
+}
+/*
+
+output:->
+
+Enter the size of the array1 and array2:
+6 4
+Enter the elements in the array1:
+11 1 13 21 3 7
+Enter the elements in the array2:
+11 3 7 1
+YES
+
+Time complexity=O(nlogn+mlogm)
+*/
