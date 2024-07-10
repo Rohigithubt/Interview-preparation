@@ -1,0 +1,42 @@
+//program to find minimum difference between maximum chocolates and minimum chocolates
+#include<bits/stdc++.h>
+using namespace std;
+long long findmindiff(long long a[],long n,long m){
+    sort(a,a+n);
+    long ans=LLONG_MAX;
+    for(int i=0;i<n-m+1;i++){
+        int j=i+m-1;
+        if(a[j]-a[i]<ans){
+            ans=a[j]-a[i];
+        }
+    }
+    return ans;
+}
+int main()
+{
+    long long n,m;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    long long a[n];
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    cout<<"Enter the number of students:\n";
+    cin>>m;
+    cout<<"minimum difference between maximum chocolates and minimum chocolates is="<<findmindiff(a,n,m);
+}
+/*
+
+output:->
+
+Enter the size of the array:
+7
+Enter the elements in the array:
+7 3 2 4 9 12 56              
+Enter the number of students:
+3
+minimum difference between maximum chocolates and minimum chocolates is=2
+
+Time complexity=O(N*logN)
+*/
