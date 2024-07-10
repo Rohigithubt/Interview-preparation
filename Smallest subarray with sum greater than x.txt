@@ -1,0 +1,57 @@
+//program to find Smallest subarray with sum greater than x
+#include<bits/stdc++.h>
+using namespace std;
+int smallestSubWithSum(vector<int> &v,int n,int x){
+    int i=0;
+    int j=0;
+    int sum=0;
+     int mn=INT_MAX;
+        
+
+        while(i<n){
+            sum+=v[i];
+            
+            if(sum>x){
+                
+                while(sum>x && i>=j){
+                    mn=min(mn,i-j+1);
+                    sum-=v[j];
+                    j++;
+                    
+                }
+                
+            }
+            i++;
+        }
+        if(mn==INT_MAX)mn=0;
+        return mn;
+}
+int main()
+{
+    int n,x;
+    cout<<"Enter the size of the vector:\n";
+    cin>>n;
+    vector<int> v;
+    cout<<"Enter the elements in the vector:\n";
+    for(int i=0;i<n;i++){
+        int value;
+        cin>>value;
+        v.push_back(value);
+    }
+    cout<<"Enter the value of x:\n";
+    cin>>x;
+    cout<<"Minimum length subarray is="<<smallestSubWithSum(v,n,x);
+}
+/*
+output:->
+
+Enter the size of the vector:
+6
+Enter the elements in the vector:
+1 4 45 6 0 19
+Enter the value of x:
+51
+Minimum length subarray is=3
+
+Time complexity=O(n)
+*/
