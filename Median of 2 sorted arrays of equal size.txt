@@ -1,0 +1,38 @@
+//program to find median of an arrary
+#include<bits/stdc++.h>
+using namespace std;
+int find_median(vector<int> &v){
+    int n=v.size();
+    sort(v.begin(),v.end());
+     if(n%2==1){
+         return v[n/2];
+     }
+     else{
+         return (v[n/2]+v[(n/2)-1])/2;
+     }
+}
+int main(){
+    int n;
+    cout<<"Enter the size of the vector:\n";
+    cin>>n;
+    vector<int> v;
+    cout<<"Enter the elements in the vector:\n";
+    for(int i=0;i<n;i++){
+        int value;
+        cin>>value;
+        v.push_back(value);
+    }
+    cout<<"value of the median="<<find_median(v);
+}
+/*
+
+output:->
+
+Enter the size of the vector:
+5
+Enter the elements in the vector:
+90 100 78 89 67
+value of the median=89
+
+Time complexity=O(N*logN)
+*/
