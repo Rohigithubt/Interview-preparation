@@ -1,0 +1,38 @@
+//program to check string is palindrome or not
+#include<bits/stdc++.h>
+using namespace std;
+bool ispalindrome(string &s){
+    int start=0,end=s.length()-1;
+    while(start<end){
+        if(s[start]!=s[end]){
+            return false;
+        }
+        else{
+            start++;
+            end--;
+        }
+    }
+    return true;
+}
+int main()
+{
+    string s;
+    cout<<"Enter the string:\n";
+    getline(cin,s);
+    if(!ispalindrome(s)){
+        cout<<"This string is not palindrome:\n";
+    }
+    else{
+        cout<<"this is string is palindrome:\n";
+    }
+}
+/*
+
+output:->
+
+Enter the string:
+naman
+this is string is palindrome:
+
+Time complexity=O(n)
+*/
