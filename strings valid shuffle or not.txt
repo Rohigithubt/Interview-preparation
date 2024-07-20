@@ -1,0 +1,58 @@
+//program to check given strings are valid shuffle or not
+#include<bits/stdc++.h>
+using namespace std;
+bool issuffle(string &s1,string &s2,string &shuffle){
+    if(shuffle.length()!=(s1.length()+s2.length())){
+        return false;
+    }
+    map<char,int> m1;
+            for(int i=0;i<s1.length();i++){
+                m1[s1[i]]++;
+            }
+            for(int i=0;i<s2.length();i++){
+                m1[s2[i]]++;
+            }
+    for (int i = 0; i < shuffle.length(); i++) {
+        if (m1.find(shuffle[i]) != m1.end()){
+            m1[shuffle[i]]--;
+        }
+        else{
+            return false;
+        }
+    }
+    for (auto it : m1) {
+        if (it.second != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+int main()
+{
+    string s1,s2,shuffle;
+    cout<<"Enter the first string:\n";
+    getline(cin,s1);
+    cout<<"Enter the second string:\n";
+    getline(cin,s2);
+    cout<<"Enter the shuffle string:\n";
+    getline(cin,shuffle);
+    if(!issuffle(s1,s2,shuffle)){
+        cout<<"These strings are not valid shuffle:\n";
+    }
+    else{
+        cout<<"These strings are valid shuffle:\n";
+    }
+}
+/*
+output:->
+
+Enter the first string:
+ba
+Enter the second string:
+xy
+Enter the shuffle string:
+axyb
+These strings are valid shuffle:
+
+Time complexity=O(n)
+*/
