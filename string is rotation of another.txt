@@ -1,0 +1,41 @@
+//program to check if given strings are rotations of each other or not
+#include<bits/stdc++.h>
+using namespace std;
+bool isrotational(string &s1,string &s2){
+    if(s1.length()!=s2.length()){
+        return false;
+    }
+    string temp=s1+s1;
+    if(temp.find(s2)!=string::npos){
+        return true;
+    }
+    else{
+      return false;
+    }
+}
+int main()
+{
+    string s1,s2;
+    cout<<"Enter the first string:\n";
+    getline(cin,s1);
+    cout<<"Enter the second string:\n";
+    getline(cin,s2);
+    if(!isrotational(s1,s2)){
+        cout<<"These strings are not rotational of each other:\n";
+    }
+    else{
+        cout<<"these strings are rotational of each other:\n";
+    }
+}
+/*
+
+output:->
+
+Enter the first string:
+abcd
+Enter the second string:
+bcda 
+these strings are rotational of each other:
+
+Time complexity=O(n)
+*/
