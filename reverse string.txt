@@ -1,0 +1,33 @@
+//program to reverse a string
+#include<bits/stdc++.h>
+using namespace std;
+void reversestring(string &s){
+    int start=0,end=s.size()-1;
+    while(start<end){
+        char temp=s[start];
+        s[start]=s[end];
+        s[end]=temp;
+        start++;
+        end--;
+    }
+}
+int main()
+{
+    string s;
+    cout<<"Enter the string:\n";
+    getline(cin,s);
+    reversestring(s);
+    cout<<"After reverse operation:\n";
+    cout<<s;
+}
+/*
+
+output:->
+
+Enter the string:
+Rohit 
+After reverse operation:
+tihoR
+
+Time complexity=O(n)
+*/
