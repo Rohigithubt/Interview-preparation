@@ -1,0 +1,43 @@
+//program to find count and say of a number
+#include<bits/stdc++.h>
+using namespace std;
+string countandsay(int n){
+   if(n==1){
+       return "1";
+   }
+   if(n==2) return "11";
+   int i=3;
+   string l="11";
+   while(i<=n){
+       int count=1;
+       string r="";
+       for(int j=0;j<l.size();j++){
+           if(j+1 < l.size() && l[j]==l[j+1]){
+               count++;
+           }
+           else{
+               r+=to_string(count)+l[j];
+           }
+       }
+       l=r;
+       i++;
+   }
+   return l;
+}
+int main()
+{
+    int n;
+    cout<<"Enter the number:\n";
+    cin>>n;
+    cout<<"Count and say of this number="<<countandsay(n);
+}
+/*
+
+output:->
+
+Enter the number:
+5
+Count and say of this number=111221
+
+Time complexity=O(2^n)
+*/
