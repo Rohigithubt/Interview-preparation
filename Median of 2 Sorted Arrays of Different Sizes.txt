@@ -1,0 +1,55 @@
+//program to find median of two sorted arrays of different sizes
+#include<bits/stdc++.h>
+using namespace std;
+double MedianOfArrays(vector<int>& array1, vector<int>& array2)
+    {
+        for(int i=0;i<array2.size();i++){
+            array1.push_back(array2[i]);
+        }
+        sort(array1.begin(),array1.end());
+        int n=array1.size();
+        if(n%2==1){
+            return array1[n/2];
+        }
+        else{
+            return (double)(array1[n/2]+array1[(n/2)-1])/2;
+        }
+    
+}
+int main()
+{
+    int n,m;
+    cout<<"Enter the size of the two vectors:\n";
+    cin>>n;
+    cin>>m;
+    vector<int> array1;
+    vector<int> array2;
+    cout<<"Enter the elements in the vector1:\n";
+    for(int i=0;i<n;i++){
+        int value;
+        cin>>value;
+        array1.push_back(value);
+    }
+    cout<<"Enter the elements in the vector2:\n";
+    for(int i=0;i<m;i++){
+        int value;
+        cin>>value;
+        array2.push_back(value);
+    }
+    cout<<"the median of 2 sorted arrays of different sizes="<<MedianOfArrays(array1,array2);
+
+}
+/*
+
+output:->
+
+Enter the size of the two vectors:
+3 4 
+Enter the elements in the vector1:
+1 5 9
+Enter the elements in the vector2:
+2 3 6 7
+the median of 2 sorted arrays of different sizes=5
+
+Time complexity=O(N*logN)
+*/
