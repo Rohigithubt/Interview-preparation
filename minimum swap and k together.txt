@@ -1,0 +1,61 @@
+//program to find the minimum number of swaps required to bring all the numbers less than or equal to k together
+#include<bits/stdc++.h>
+using namespace std;
+int minSwap(int arr[],int n,int k){
+     int fav = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] <= k) {
+                fav++;
+            }
+        }
+        int nonfav = 0;
+        for (int i = 0; i < fav; i++) {
+            if (arr[i] > k) {
+                nonfav++;
+            }
+        }
+
+        int s = 0, e = fav - 1, result = nonfav;
+
+        while (e < n - 1) {
+            e++;
+            if (arr[e] > k) {
+                nonfav++;
+            }
+            if (arr[s] > k) {
+                nonfav--;
+            }
+            s++;
+            result = min(result, nonfav);
+        }
+
+        return result;
+}
+int main()
+{
+    int n,k;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    int a[n];
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    cout<<"Enter the value of the k:\n";
+    cin>>k;
+    cout<<"the minimum number of swaps required to bring all the numbers less than or equal to k togethe="<<minSwap(a,n,k);
+}
+/*
+
+output:->
+
+Enter the size of the array:
+5
+Enter the elements in the array:
+2 1 5 6 3
+Enter the value of the k:
+3
+the minimum number of swaps required to bring all the numbers less than or equal to k together=1
+
+Time complexity=O(n)
+*/
