@@ -1,0 +1,50 @@
+//program to check that the given vector contains all palindrome elements or not
+#include<bits/stdc++.h>
+using namespace std;
+bool PalinArray(vector<int> &v){
+    for(int i=0;i<v.size();i++){
+        int reverse=0,rem;
+        int num=v[i];
+        int original=num;
+        while(num>0){
+            rem=num%10;
+            reverse=(reverse*10)+rem;
+            num=num/10;
+        }
+        if(reverse!=original){
+            return false;
+        }
+    }
+    return true;
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    vector<int> v;
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        int value;
+        cin>>value;
+        v.push_back(value);
+    }
+    if(!PalinArray(v)){
+        cout<<"This vector doesn't contain all palindrome elements:\n";
+    }
+    else{
+        cout<<"This vector contain all palindrome elements:\n";
+    }
+}
+/*
+
+output:->
+
+Enter the size of the array:
+5
+Enter the elements in the array:
+111 222 555 656 444
+This vector contain all palindrome elements:
+
+Time complexity=O(N*logN)
+*/
