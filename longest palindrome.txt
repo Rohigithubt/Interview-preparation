@@ -1,0 +1,45 @@
+//program to find longest palindrome subsequence in a string
+#include<bits/stdc++.h>
+using namespace std;
+string longestPalin(string S) {
+        int n = S.size();
+        if (n == 0) return "";
+
+        int start = 0, maxLength = 1;
+        auto expandAroundCenter = [&](int left, int right) {
+            while (left >= 0 && right < n && S[left] == S[right]) {
+                left--;
+                right++;
+            }
+            int length = right - left - 1;
+            if (length > maxLength) {
+                start = left + 1;
+                maxLength = length;
+            }
+        };
+
+        for (int i = 0; i < n; ++i) {
+            expandAroundCenter(i, i);
+            expandAroundCenter(i, i + 1);
+        }
+
+        return S.substr(start, maxLength); 
+    
+}
+int main()
+{
+    string s;
+    cout<<"Enter the string:\n";
+    getline(cin,s);
+    cout<<"Longest palindrome substring="<<longestPalin(s);
+}
+/*
+
+output:->
+
+Enter the string:
+aaabbaa
+Longest palindrome substring=aabbaa
+
+Time complexity=O(n^2)
+*/
