@@ -1,0 +1,46 @@
+//program to check in given string parenthesis are balanced or not
+#include<bits/stdc++.h>
+using namespace std;
+bool ispar(string x){
+    stack<int> s;
+        int n= x.size();
+        int c;
+        for(int i=0;i<n;i++){
+            if(x[i]=='('||x[i]=='{'||x[i]=='[') 
+            {
+                s.push(x[i]);
+            }
+            else{
+                if(s.empty()) return false;
+                c=(int)s.top();
+                s.pop();
+                if((int)x[i]==c+1||(int)x[i]==c+2) {continue;}
+                else return false;
+            }
+        }
+        if(s.empty()) return true;
+        else return false;
+
+}
+int main()
+{
+    string s;
+    cout<<"Enter the string:\n";
+    getline(cin,s);
+    if(!ispar(s)){
+        cout<<"In this string parenthesis are not balanced:\n";
+    }
+    else{
+        cout<<"In this string parenthesis are balanced:\n";
+    }
+}
+/*
+
+output:->
+
+Enter the string:
+{([])}
+In this string paranthesis are balanced:
+
+Time complexity=O(n)
+*/
