@@ -1,0 +1,57 @@
+//program to check wild string can be matched with pattern string or not
+#include<bits/stdc++.h>
+using namespace std;
+bool match(string w, string p){
+         int n = w.size(), m = p.size();
+        int i = 0, j = 0;
+        int starIdx = -1, matchIdx = 0;
+        
+        while (j < m) {
+            if (i < n && (w[i] == '?' || w[i] == p[j])) {
+                i++;
+                j++;
+            } 
+            else if (i < n && w[i] == '*') {
+                starIdx = i;
+                matchIdx = j;
+                i++;
+            } 
+            else if (starIdx != -1) {
+                i = starIdx + 1;
+                matchIdx++;
+                j = matchIdx;
+            } 
+            else {
+                return false;
+            }
+        }
+        while (i < n && w[i] == '*') {
+            i++;
+        }
+        
+      return i == n;
+}
+int main()
+{
+    string str1,str2;
+    cout<<"Enter two strings:\n";
+    getline(cin,str1);
+    getline(cin,str2);
+    if(!match(str1,str2)){
+        cout<<"No wild string can be matched with pattern string";
+    }
+    else{
+        cout<<"Yes wild string cann't be matched with pattern string";
+    }
+}
+/*
+
+output:->
+
+Enter two strings:
+ge*ks
+geeks
+Yes wild string cann't be matched with pattern string
+
+Time complexity=O(n)
+*/
