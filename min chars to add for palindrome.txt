@@ -1,0 +1,37 @@
+//program to find minimum character required to add for making a string palindrome
+#include<bits/stdc++.h>
+using namespace std;
+int minChar(string str){
+    string rev=str;
+	    reverse(str.begin(),str.end());
+	if(rev==str){
+		return 0;
+	}
+	int n=str.size();
+	
+	for(int i=0;i<=n-1;i++){
+		str.erase(0,1);
+		rev.pop_back();
+		if(str==rev){
+			return i+1;
+		}
+	}
+	return -1;
+}
+int main()
+{
+    string s;
+    cout<<"Enter the string:\n";
+    getline(cin,s);    
+    cout<<"minimum character to add for making palindrome string="<<minChar(s);
+}
+/*
+
+output:->
+
+Enter the string:
+abc
+minimum character to add for making palindrome string=2
+
+Time complexity=O(n)
+*/
