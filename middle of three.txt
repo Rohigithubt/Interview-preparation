@@ -1,0 +1,38 @@
+//program to find middle of three number with minimum comparison
+#include<bits/stdc++.h>
+using namespace std;
+int middle(int A, int B, int C){
+        if(A>B && A>C){
+            if(B>C) return B;
+            else return C;
+        }
+        else if(B>A && B>C){
+            if(C>A) return C;
+            else return A;
+        }
+        else if(C>A && C>B){
+            if(A>B)  return A;
+            else return B;
+        }
+           
+}
+int main()
+{
+    int A,B,C;
+    cout<<"Enter three numbers:\n";
+    cin>>A;
+    cin>>B;
+    cin>>C;
+    cout<<"Middle of three number is="<<middle(A,B,C);
+    
+}
+/*
+
+output:->
+
+Enter three numbers:
+978 518 300
+Middle of three number is=518
+
+Time complexity=O(1)
+*/
