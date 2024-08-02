@@ -1,0 +1,32 @@
+//program to find count of perfect squares which is less than given value N
+#include<bits/stdc++.h>
+using namespace std;
+int countSquares(int N){
+        int count=0;
+        int i=2;
+        int square=1;
+        while(square<N){
+            square=i*i;
+            count++;
+            i++;
+        }
+        return count;
+}
+int main()
+{
+    int N;
+    cout<<"Enter a number:\n";
+    cin>>N;
+    cout<<"count of perfect square less than given number="<<countSquares(N);
+    
+}
+/*
+
+output:->
+
+Enter a number:
+9
+count of perfect square less than given number=2
+
+Time complexity=O(n)
+*/
