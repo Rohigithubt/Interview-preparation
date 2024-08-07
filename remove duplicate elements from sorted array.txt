@@ -1,0 +1,48 @@
+//program to remove duplicate elements in a sorted array
+#include<bits/stdc++.h>
+using namespace std;
+int remove_duplicate(vector<int> &arr) {
+int n=arr.size();
+        if (n <= 1)
+        return n;
+
+    set<int> s;
+
+    for (int i = 0; i < n; ++i) {
+        s.insert(arr[i]);
+    }
+
+    int index = 0;
+    for (auto it = s.begin(); it != s.end(); it++) {
+        arr[index++] = *it;
+    }
+
+    return s.size();
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    vector<int> v;
+    cout<<"Enter the elements in sorted manner:\n";
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        v.push_back(x);
+    }
+    cout<<"After removing duplicate elements remaining elements="<<remove_duplicate(v);
+    
+}
+/*
+
+output:->
+Enter the size of the array:
+7
+Enter the elements in sorted manner:
+2 3 4 2 5 5 2
+After removing duplicate elements remaining elements=4
+
+Time complexity=O(n)
+
+*/
