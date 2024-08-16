@@ -1,0 +1,84 @@
+//program to Find First and Last Position of Element in Sorted Array
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> searchRange(vector<int>& nums, int target) {
+         int n = nums.size();
+        vector<int> v(2,-1);
+
+        int lo = 0; int hi = n-1;
+        while(lo<=hi){
+            int mid = (hi+lo)/2;
+            if(nums[mid]==target){
+                if(mid!=n-1){ 
+                    if(nums[mid+1]==target){
+                    lo = mid + 1;
+                    }
+                    else {
+                        v[1]=mid;
+                        break;
+                    }
+                }
+                else{ 
+                    v[1]=mid;
+                        break;
+                }
+            }
+            else if(nums[mid]>target) hi=mid-1;
+            else lo = mid + 1;
+        }
+
+        
+        lo = 0; hi = n-1;
+        while(lo<=hi){
+            int mid = (hi+lo)/2;
+            if(nums[mid]==target){
+                if(mid!=0){ 
+                    if(nums[mid-1]==target){
+                    hi = mid - 1;
+                }
+                    else {
+                        v[0]=mid;
+                        break;
+                    }
+                }
+                else {
+                        v[0]=mid;
+                        break;
+                }
+            }
+            else if(nums[mid]>target) hi=mid-1;
+            else lo = mid + 1;
+        }
+        return v;
+}
+int main()
+{
+    int n,target;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    vector<int> v;
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        v.push_back(x);
+    }
+    cout<<"Enter the target value:\n";
+    cin>>target;
+    vector<int> result=searchRange(v,target);
+    cout<<"Frist occurance at index="<<result[0]<<"\n"<<"second occurance at index="<<result[1];
+}
+/*
+output->
+
+Enter the size of the array:
+6
+Enter the elements in the array:
+1 7 7 8 8 10
+Enter the target value:
+8
+Frist occurance at index=3
+second occurance at index=4
+
+Time complexity=O(logN)
+*/
