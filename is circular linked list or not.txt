@@ -1,0 +1,59 @@
+//program to check given linked list is circular or not
+#include<bits/stdc++.h>
+using namespace std;
+class ListNode{
+    public:
+  int data;
+  ListNode* next;
+  ListNode(int data){
+      this->data=data;
+      this->next=NULL;
+  }
+};
+ListNode* createList(int arr[],int n){
+    ListNode* head=new ListNode(arr[0]);
+    ListNode* curr=head;
+    for(int i=1;i<n;i++){
+        curr->next=new ListNode(arr[i]);
+        curr=curr->next;
+    }
+    curr->next=head;
+    return head;
+}
+bool iscircular(ListNode* head){
+    ListNode* temp=head;
+    while(temp!=NULL){
+        temp=temp->next;
+        if(temp==head){
+            return true;
+        }
+    }
+    return false;
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of the list:\n";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter the elements in the list:\n";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    ListNode *head=createList(arr,n);
+    if(iscircular(head)){
+        cout<<"it is circular";
+    }
+    else{
+        cout<<"it is not circular";
+    }
+}
+/*
+Enter the size of the list:
+7
+Enter the elements in the list:
+1 2 3 4 5 6 7
+it is circular
+
+Time complexity=O(n)
+*/
