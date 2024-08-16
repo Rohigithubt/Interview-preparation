@@ -1,0 +1,49 @@
+//program to find index of k where k must be inserted to keep the array sorted
+#include<bits/stdc++.h>
+using namespace std;
+ int searchInsertK(vector<int>arr, int n, int k){
+        int start=0,end=n-1,index=-1;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(arr[mid]>=k){
+                index=mid;
+                end=mid-1;
+            }
+            else{
+                index=mid+1; 
+                start=mid+1;
+            }
+        }
+        return index;
+        
+}
+int main()
+{
+    int n,k;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    vector<int> v;
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        v.push_back(x);
+    }
+    cout<<"Enter the value of k:\n";
+    cin>>k;
+    cout<<"index of k where k must be inserted to keep the array sorted="<<searchInsertK(v,n,k);
+}
+/*
+
+output:->
+
+Enter the size of the array:
+6
+Enter the elements in the array:
+1 3 4 5 6 7
+Enter the value of k:
+2
+index of k where k must be inserted to keep the array sorted=1
+
+Time complexity=O(logN)
+*/
