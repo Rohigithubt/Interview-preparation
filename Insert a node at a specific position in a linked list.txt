@@ -1,0 +1,88 @@
+//program to insert the element at the given position
+#include<bits/stdc++.h>
+using namespace std;
+class ListNode{
+  public:
+   int data;
+   ListNode* next;
+   ListNode(int data){
+       this->data=data;
+       this->next=NULL;
+   }
+};
+ListNode* createList(int arr[],int n){
+    if(n==0) return NULL;
+    ListNode* head=new ListNode(arr[0]);
+    ListNode *curr=head;
+    for(int i=1;i<n;i++){
+        curr->next=new ListNode(arr[i]);
+        curr=curr->next;
+    }
+    return head;
+}
+ListNode *insertAtposition(ListNode *head, int x,int pos) {
+        ListNode* temp = new ListNode(x);
+      if (pos == 1 || head == NULL) {
+        temp->next = head;
+        head = temp;
+        return head;
+      }
+   ListNode* curr = head;
+     for (int i = 1; i < pos - 1 && curr != NULL; i++) {
+         curr = curr->next;
+     }
+
+    if (curr != NULL) {
+        temp->next = curr->next;
+        curr->next = temp;
+    }
+
+    return head;
+
+}
+void printList(ListNode* head){
+    ListNode* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+int main()
+{
+    int n,x,pos;
+    cout<<"Enter the size of the Linked List:\n";
+    cin>>n;
+     if (n == 0) {
+        cout << "The linked list is empty." << endl;
+        return 0;
+    }
+    int arr[n];
+    cout<<"Enter elements in the Linked List:\n";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<"Enter the element you want to insert at the position:\n";
+    cin>>x;
+    cout<<"Enter the position where you want to insert element:\n";
+    cin>>pos;
+    ListNode* head = createList(arr,n);
+    ListNode* result=insertAtposition(head,x,pos);
+    cout<<"List after insertion:\n";
+    printList(result);
+}
+/*
+output->
+
+Enter the size of the Linked List:
+7
+Enter elements in the Linked List:
+1 2 3 4 5 6 7
+Enter the element you want to insert at the position:
+4
+Enter the position where you want to insert element:
+4
+List after insertion:
+1 2 3 4 4 5 6 7 
+
+Time complexity=O(n)
+*/
