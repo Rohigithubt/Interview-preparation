@@ -1,0 +1,54 @@
+//program for WoodCutting Made Easy
+#include<bits/stdc++.h>
+using namespace std;
+int solve(vector<int> &A, int B) {
+     int maxi=*max_element(A.begin(),A.end());
+    int i=maxi-B;
+   
+   
+    while(maxi>=i){
+        int sum=0;
+        for(int j=0;j<A.size();j++){
+            if(A[j]>maxi){
+                sum+=A[j]-maxi;
+            }
+        }
+        if(sum==B){
+            return maxi;
+        }else if(sum>B){
+            return maxi;
+        }
+        maxi--;  
+    }
+   return -1;
+}
+int main()
+{
+    int n,B;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    vector<int> v;
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        v.push_back(x);
+    }
+    cout<<"Enter the value of B:\n";
+    cin>>B;
+    cout<<"The answer is="<<solve(v,B);
+}
+/*
+output:->
+
+Enter the size of the array:
+4
+Enter the elements in the array:
+20 15 10 17
+Enter the value of B:
+7
+The answer is=15
+
+Time complexity=O(N*logN)
+*/
+
