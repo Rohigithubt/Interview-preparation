@@ -1,0 +1,47 @@
+//program to find max length of parentheses substring using stack
+#include<bits/stdc++.h>
+using namespace std;
+int findMaxLen(string s) {
+  stack<int>st;
+        st.push(-1);
+        int n= s.size();
+        for(int i=0; i<n; i++){
+            if(s[i]== '('){
+                st.push(i);
+            }
+            else if(s[i]== ')'){
+                if(s[st.top()]== '('){
+                    st.pop();
+                }
+                else{
+                    st.push(i);
+                }
+            }
+        }
+        int a =n;
+        int ans= 0;
+        while(!st.empty()){
+            int temp= st.top();
+            ans= max(ans, a- temp- 1);
+            a= temp;
+            st.pop();
+        }
+        return ans;
+}
+int main()
+{
+    string s;
+    cout<<"Enter the parentheses substring:\n";
+    getline(cin,s);
+    cout<<"Maximum length of string="<<findMaxLen(s);
+}
+/*
+
+output:->
+
+Enter the parentheses substring:
+(()(
+Maximum length of string=2
+
+Time complexity=O(n)
+*/
