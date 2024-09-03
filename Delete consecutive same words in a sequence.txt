@@ -1,0 +1,58 @@
+//program to remove consucutive same strings using stack
+#include <bits/stdc++.h>
+using namespace std;
+
+int removeConsecutiveSame(vector<string> &v) {
+    stack<string> st;
+    
+    for (int i = 0; i < v.size(); i++) {
+        if (st.empty()) {
+            st.push(v[i]);
+        } else {
+            string str = st.top();
+            if (str.compare(v[i]) == 0) {
+                st.pop();
+            } else {
+                st.push(v[i]);
+            }
+        }
+    }
+    return st.size();
+}
+
+int main() {
+    int n;
+    vector<string> v;
+    
+    cout << "Enter the total number of strings:\n";
+    cin >> n;
+    cin.ignore(); // To clear the newline character left in the input buffer
+    
+    cout << "Enter strings:\n";
+    for (int i = 0; i < n; i++) {
+        string s;
+        getline(cin, s);
+        v.push_back(s);
+    }
+    
+    cout <<"remaining consucutive same strings="<< removeConsecutiveSame(v) << endl;
+
+    return 0;
+}
+/*
+output:->
+
+Enter the total number of strings:
+5
+Enter strings:
+ab
+aa
+aa
+bcd
+ab
+remaining consucutive same strings=3
+
+Time complexity=O(n)
+*/
+
+
