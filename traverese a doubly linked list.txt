@@ -1,0 +1,59 @@
+//program to traverse a doubly linked list
+#include<bits/stdc++.h>
+using namespace std;
+class ListNode{
+    public:
+  int data;
+  ListNode* next,*prev;
+  ListNode(int data){
+       this->prev=NULL;
+      this->data=data;
+      this->next=NULL;
+     
+  }
+};
+ListNode* createList(int arr[],int n){
+   ListNode* head=new ListNode(arr[0]);
+   ListNode* curr=head;
+   for(int i=1;i<n;i++){
+       ListNode* newnode=new ListNode(arr[i]);
+       curr->next=newnode;
+       newnode->prev=curr;
+       curr=newnode;
+   }
+   return head;
+}
+void printList(ListNode* head){
+    ListNode* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of the list:\n";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter the element in the list:\n";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    ListNode* head=createList(arr,n);
+    cout<<"Linked list:\n";
+    printList(head);
+}
+/*
+
+output->
+
+Enter the size of the list:
+5
+Enter the element in the list:
+1 2 3 4 5
+Linked list:
+1 2 3 4 5 
+
+Time complexity=O(n)
+*/
