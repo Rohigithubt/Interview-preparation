@@ -1,0 +1,92 @@
+//program to insert an element at the begining of circular linked list
+#include<bits/stdc++.h>
+using namespace std;
+
+class ListNode {
+public:
+    int data;
+    ListNode* next;
+    ListNode(int data) {
+        this->data = data;
+        this->next = NULL;
+    }
+};
+
+ListNode* createList(int arr[], int n) {
+    if (n == 0) return NULL;
+
+    ListNode* head = new ListNode(arr[0]);
+    ListNode* curr = head;
+
+    for (int i = 1; i < n; i++) {
+        ListNode* newnode = new ListNode(arr[i]);
+        curr->next = newnode;
+        curr = curr->next;
+    }
+    curr->next = head;
+    return head;
+}
+
+void printList(ListNode* head) {
+    if (head == NULL) return; 
+
+    ListNode* curr = head;
+    do {
+        cout << curr->data << " ";
+        curr = curr->next;
+    } while (curr != head);
+    cout << endl;
+    
+}
+ListNode* insertAtbegining(ListNode* head,int k){
+     ListNode* newnode = new ListNode(k);
+    if (head == NULL) {  
+        newnode->next = newnode;  
+        return newnode;
+    }
+    
+    ListNode* curr = head;
+    while (curr->next != head) { 
+        curr = curr->next;
+    }
+    
+    curr->next = newnode;
+    newnode->next = head;
+    head = newnode;
+    return head;
+}
+int main() {
+    int n,k;
+    cout << "Enter the size of the array:\n";
+    cin >> n;
+    int arr[n];
+    cout << "Enter the elements in the array:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cout<<"Enter the element you want to insert at begining:\n";
+    cin>>k;
+    ListNode* head = createList(arr, n);
+    ListNode* result=insertAtbegining(head,k);
+    cout<<"After insertion operation:\n";
+    printList(result);
+    
+
+    return 0;
+}
+/* 
+output:->
+
+Enter the size of the array:
+5
+Enter the elements in the array:
+1 2 3 4 5
+Enter the element you want to insert at begining:
+2
+After insertion operation:
+2 1 2 3 4 5 
+
+
+Time complexity=O(n)
+*/
+
