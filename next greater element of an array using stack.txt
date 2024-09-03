@@ -1,0 +1,51 @@
+//program to find next greater elements of an array using stack
+#include<bits/stdc++.h>
+using namespace std;
+void printNGE(int arr[],int n){
+    stack<int> st;
+    st.push(arr[0]);
+    for(int i=1;i<n;i++){
+        if(st.empty()){
+            st.push(arr[i]);
+            continue;
+        }
+        while(st.empty()==false && st.top()<arr[i]){
+            cout<<st.top()<<"-->"<<arr[i];
+            cout<<"\n";
+            st.pop();
+        }
+       st.push(arr[i]);
+    }
+    while(st.empty()==false){
+        cout<<st.top()<<"-->"<<"-1"<<"\n";
+        st.pop();
+    }
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of the array:\n";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter the elements in the array:\n";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<"Next greater elements:\n";
+    printNGE(arr,n);
+}
+/*
+output:->
+
+Enter the size of the array:
+4
+Enter the elements in the array:
+11 13 21 3
+Next greater elements:
+11-->13
+13-->21
+3-->-1
+21-->-1
+
+Time complexity=O(n^2)
+*/
