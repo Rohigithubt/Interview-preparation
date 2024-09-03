@@ -1,0 +1,109 @@
+//program to delete an element in circular doubly linked list
+#include<bits/stdc++.h>
+using namespace std;
+
+class ListNode {
+public:
+    int data;
+    ListNode* next;
+    ListNode* prev;
+    ListNode(int data) {
+        this->data = data;
+        this->next = NULL;
+        this->prev=NULL;
+    }
+};
+
+ListNode* createList(int arr[], int n) {
+    if (n == 0) return NULL;
+
+    ListNode* head = new ListNode(arr[0]);
+    ListNode* curr = head;
+
+    for (int i = 1; i < n; i++) {
+        ListNode* newnode = new ListNode(arr[i]);
+        curr->next = newnode;
+        newnode->prev=curr;
+        curr = curr->next;
+    }
+    curr->next = head;
+    head->prev=curr;
+    return head;
+}
+
+void printList(ListNode* head) {
+    if (head == NULL) return; 
+
+    ListNode* curr = head;
+    do {
+        cout << curr->data << " ";
+        curr = curr->next;
+    } while (curr != head);
+    cout << endl;
+    
+}
+ListNode* deletenode(ListNode* head,int key){
+   if (head == NULL) return NULL;
+
+    ListNode* curr = head;
+    if (head->data == key) {
+        if (head->next == head) { 
+            delete head;
+            return NULL;
+        }
+        ListNode* tail = head->prev;
+        ListNode* newHead = head->next;
+        tail->next = newHead;
+        newHead->prev = tail;
+        delete head;
+        return newHead;
+    }
+
+    do {
+        if (curr->data == key) {
+            curr->prev->next = curr->next;
+            curr->next->prev = curr->prev;
+            delete curr;
+            return head;
+        }
+        curr = curr->next;
+    } while (curr != head);
+
+    cout << "Node with data " << key << " not found." << endl;
+    return head;
+}
+int main() {
+    int n,k;
+    cout << "Enter the size of the array:\n";
+    cin >> n;
+    int arr[n];
+    cout << "Enter the elements in the array:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    cout<<"Enter the element you want to delete:\n";
+    cin>>k;
+    ListNode* head = createList(arr, n);
+    ListNode* result=deletenode(head,k);
+    cout<<"After deletion operation in circular doubly linked list:\n";
+    printList(result);
+    
+
+    return 0;
+}
+/* 
+output:->
+
+Enter the size of the array:
+5
+Enter the elements in the array:
+1 2 3 4 5
+Enter the element you want to delete:
+4
+After deletion operation in circular doubly linked list:
+1 2 3 5 
+
+
+Time complexity=O(n)
+*/
+
