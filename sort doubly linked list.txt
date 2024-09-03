@@ -1,0 +1,77 @@
+//program to sort a doubly linked list
+#include<bits/stdc++.h>
+using namespace std;
+class ListNode{
+    public:
+  int data;
+  ListNode* next,*prev;
+  ListNode(int data){
+      this->prev=NULL;
+      this->data=data;
+      this->next=NULL;
+  }
+};
+ListNode* createList(int arr[],int n){
+   if (n == 0) return NULL;
+
+    ListNode* head = new ListNode(arr[0]);
+    ListNode* curr = head;
+
+    for (int i = 1; i < n; i++) {
+        ListNode* newnode = new ListNode(arr[i]);
+        curr->next = newnode;
+        newnode->prev = curr;
+        curr = newnode;
+    }
+    return head; 
+}
+void sortList(ListNode* head){
+    ListNode* curr=NULL;
+    ListNode* index=NULL;
+    int temp;
+    for(curr=head;curr!=NULL;curr=curr->next){
+        for(index=curr->next;index!=NULL;index=index->next){
+            if(curr->data>index->data){
+            temp=curr->data;
+                curr->data=index->data;
+                index->data=temp;
+            }
+        }
+    }
+
+}
+void printList(ListNode* head){
+    ListNode* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+int main()
+{
+    int n;
+    cout<<"Enter the size of the list:\n";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter the elements in the list:\n";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    ListNode* head=createList(arr,n);
+    sortList(head);
+    cout<<"After sorting:\n";
+    printList(head);
+}
+/*
+
+output:->
+
+Enter the size of the list:
+6
+Enter the elements in the list:
+2 1 4 3 5 6
+After sorting:
+1 2 3 4 5 6 
+
+Time complexity=O(n^2)
+*/
