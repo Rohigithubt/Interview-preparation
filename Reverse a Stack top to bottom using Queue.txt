@@ -1,0 +1,53 @@
+//program to reverse a stack top to bottom using queue
+#include <bits/stdc++.h>
+using namespace std;
+
+void reverse(stack<int>& stk)
+{
+	queue<int> qu;
+	while (!stk.empty()) {
+		qu.push(stk.top());
+		stk.pop();
+	}
+
+	while (!qu.empty()) {
+		stk.push(qu.front());
+		qu.pop();
+	}
+}
+int main()
+{
+    stack<int> stk;
+    int n;
+    cout<<"Enter the size of the stack:\n";
+    cin>>n;
+    cout<<"Enter the elements in the stack:\n";
+    for(int i=0;i<n;i++){
+     int x;
+     cin>>x;
+     stk.push(x);
+    }
+	reverse(stk);
+
+	cout << "After Reverse : (Top to Bottom)"
+		<< "\n";
+	while (!stk.empty()) {
+		cout << stk.top() << " ";
+		stk.pop();
+	}
+	cout << "\n";
+
+	return 0;
+}
+/*
+output:->
+
+Enter the size of the stack:
+5
+Enter the elements in the stack:
+1 2 3 4 5
+After Reverse: (Top to Bottom)
+1 2 3 4 5 
+
+Time complexity=O(n)
+*/
