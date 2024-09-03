@@ -1,0 +1,56 @@
+//program to sort number using temporary stack
+#include <bits/stdc++.h>
+using namespace std;
+stack<int> sortStack(stack<int> &input)
+{
+	stack<int> tmpStack;
+    while (!input.empty())
+	{
+		int tmp = input.top();
+		input.pop();
+
+		while (!tmpStack.empty() && tmpStack.top() < tmp)
+		{
+			input.push(tmpStack.top());
+			tmpStack.pop();
+		}
+
+		tmpStack.push(tmp);
+	}
+
+	return tmpStack;
+}
+int main()
+{
+	stack<int> input;
+	int n;
+	cout<<"Enter the size of the stack:\n";
+	cin>>n;
+	cout<<"Enter the element in the stack:\n";
+	for(int i=0;i<n;i++){
+	    int x;
+	    cin>>x;
+	    input.push(x);
+	}
+	stack<int> tmpStack = sortStack(input);
+	cout << "Sorted numbers are:\n";
+
+	while (!tmpStack.empty())
+	{
+		cout << tmpStack.top()<< " ";
+		tmpStack.pop();
+	}
+}
+/*
+
+output:->
+
+Enter the size of the stack:
+5
+Enter the element in the stack:
+90 23 57 21 44
+Sorted numbers are:
+21 23 44 57 90 
+
+Time complexity=O(n^2)
+*/
